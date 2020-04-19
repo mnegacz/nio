@@ -2,16 +2,27 @@ package net.negacz;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.nio.channels.ServerSocketChannel;
 import java.util.concurrent.ExecutorService;
 
 import static java.lang.Runtime.getRuntime;
 
 public class OnShutdownCloser {
 
-  public static ExecutorService autoCloseOnShutdown(ExecutorService executorService) {
+  public static ServerSocketChannel autoCloseOnShutdown(ServerSocketChannel serverSocketChannel) {
     onShutdown(() -> {
-      executorService.shutdownNow();
+      try {
+        serverSocketChannel.close();
+        System.out.println("* ServerSocketChannel closed");
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
     });
+    return serverSocketChannel;
+  }
+
+  public static ExecutorService autoCloseOnShutdown(ExecutorService executorService) {
+    onShutdown(() -> executorService.shutdownNow());
     return executorService;
   }
 
