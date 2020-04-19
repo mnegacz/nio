@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.SocketChannel;
 
-import static net.negacz.nio.client.SocketChannelHandler.handle;
+import static net.negacz.nio.client.NaiveSocketChannelHandler.handle;
 
-class NioClient {
+class NaiveNioClient {
 
   public static void main(String[] args) throws IOException {
     SocketChannel socketChannel = SocketChannel.open();

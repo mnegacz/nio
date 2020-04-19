@@ -6,7 +6,7 @@ import java.nio.channels.SocketChannel;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-class SocketChannelHandler {
+class NaiveSocketChannelHandler {
 
   static void handle(SocketChannel socketChannel) throws IOException {
     System.out.println("* Handling socket");
